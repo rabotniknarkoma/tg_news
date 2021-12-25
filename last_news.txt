@@ -1,0 +1,10 @@
+ria
+rambler
+rbc
+bbc
+gazeta
+economics
+internet
+sport
+science
+culture
