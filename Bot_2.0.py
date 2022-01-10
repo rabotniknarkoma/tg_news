@@ -30,7 +30,7 @@ class SourceValues:
         self.science = 'https://lenta.ru/rubrics/science/'
         self.culture = 'https://lenta.ru/rubrics/culture/'
         self.class_ria = 'list-item__title'
-        self.class_rambler = 'Jn9tH'
+        self.class_rambler = '_6bF6i'
         self.class_rbc = 'newspaper-page__news'
         self.class_bbc = 'bbc-1fxtbkn evnt13t0'
         self.class_gazeta = 'b_ear-title'
@@ -47,7 +47,7 @@ class SourceValues:
         news = []
         for i in range(4, -1, -1):
             if texts[i]['href'] not in DICT_OF_LAST['ria']:
-                href = self.ria + texts[i]['href']
+                href = texts[i]['href']
                 txt = texts[i].text
                 news.append((txt, href))
                 DICT_OF_LAST['ria'].append(texts[i]['href'])
@@ -64,7 +64,7 @@ class SourceValues:
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
         texts = soup.findAll('a', self.class_rambler)
-        texts_of_news = soup.findAll('div', '_3CVkE')
+        texts_of_news = soup.findAll('div', '_1tnKf')
         news = []
         for i in range(4, -1, -1):
             if texts[i]['href'] not in DICT_OF_LAST['rambler']:
@@ -145,7 +145,7 @@ class SourceValues:
         }
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
-        texts = soup.findAll('a', 'titles')
+        texts = soup.findAll('a', 'card-mini _longgrid')
         news = []
         for i in range(4, -1, -1):
             if texts[i]['href'] not in DICT_OF_LAST['economics']:
@@ -165,7 +165,7 @@ class SourceValues:
         }
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
-        texts = soup.findAll('a', 'titles')
+        texts = soup.findAll('a', 'card-mini _longgrid')
         news = []
         for i in range(4, -1, -1):
             if texts[i]['href'] not in DICT_OF_LAST['internet']:
@@ -185,7 +185,7 @@ class SourceValues:
         }
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
-        texts = soup.findAll('a', 'titles')
+        texts = soup.findAll('a', 'card-mini _longgrid')
         news = []
         for i in range(4, -1, -1):
             if texts[i]['href'] not in DICT_OF_LAST['sport']:
@@ -205,7 +205,7 @@ class SourceValues:
         }
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
-        texts = soup.findAll('a', 'titles')
+        texts = soup.findAll('a', 'card-mini _longgrid')
         news = []
         for i in range(4, -1, -1):
             if texts[i]['href'] not in DICT_OF_LAST['science']:
@@ -225,7 +225,7 @@ class SourceValues:
         }
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
-        texts = soup.findAll('a', 'titles')
+        texts = soup.findAll('a', 'card-mini _longgrid')
         news = []
         for i in range(4, -1, -1):
             if texts[i]['href'] not in DICT_OF_LAST['culture']:

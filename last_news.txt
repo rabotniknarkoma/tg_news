@@ -1,10 +1,10 @@
-ria
-rambler
-rbc
-bbc
-gazeta
-economics
-internet
-sport
-science
-culture
+ria https://ria.ru/20211225/zemletryasenie-1765478472.html https://ria.ru/20211225/palma-1765479114.html https://ria.ru/20211225/merkel-1765480066.html https://ria.ru/20211225/groysman-1765482613.html https://ria.ru/20211225/mid-1765483871.html
+rambler https://news.rambler.ru/incidents/47838725-vspyhnuvshiy-dvigatel-vzletavshego-v-tyumeni-samoleta-snyali-na-video/ https://news.rambler.ru/army/47838715-poyavilos-video-spaseniya-vyzhivshego-letchika-su-24m-sbitogo-shest-let-nazad-v-sirii/ https://news.rambler.ru/science/47830231-myasnikov-nazval-prichinu-nizkoy-smertnosti-ot-omikrona/ https://news.rambler.ru/world/47838458-turtsiya-ne-propuskaet-tankery-pochemu-kiev-ne-mozhet-otkazatsya-ot-rossiyskogo-gaza/ https://news.rambler.ru/incidents/47838856-chinovnika-rosselhoznadora-nashli-mertvym-na-rabochem-meste/
+rbc https://www.rbc.ru/newspaper/2021/12/24/61c42af29a79474d8a0adb28 https://www.rbc.ru/newspaper/2021/12/24/61c4633d9a79476fde8b7dce https://www.rbc.ru/newspaper/2021/12/24/61c452099a79476451c4819f https://www.rbc.ru/newspaper/2021/12/24/61c38ba79a794725cf5e22d8 https://www.rbc.ru/newspaper/2021/12/24/61c34e3f9a79470ec7ba9221
+bbc /russian/news-59787089 /russian/news-59789550 /russian/news-59787309 /russian/features-59749981 /russian/features-58990557
+gazeta /sport/news/2021/12/25/17063293.shtml /social/news/2021/12/25/17063221.shtml /style/news/2021/12/25/17063329.shtml /social/news/2021/12/25/17063341.shtml /culture/news/2021/12/25/n_17063335.shtml
+economics /news/2021/12/25/uplocheno/ /news/2021/12/25/dorogo/ /news/2021/12/25/sovmestka/ /news/2021/12/25/bes_platno/ /news/2021/12/24/crysis/
+internet /news/2021/12/25/ovd/ /news/2021/12/25/why_myasnikow/ /news/2021/12/25/ivlev/ /news/2021/12/25/ovd_sotsceti/ /news/2021/12/25/peskov_journalist/
+sport /news/2021/12/25/obyazanliver/ /news/2021/12/25/razval/ /news/2021/12/25/pheteesov/ /news/2021/12/25/vagner/ /news/2021/12/25/ae_kharitonov/
+science /news/2021/12/25/il76/ /news/2021/12/25/drone/ /news/2021/12/25/orbitalnetworks/ /news/2021/12/25/webb/ /news/2021/12/25/war/
+culture /news/2021/12/24/ironia/ /news/2021/12/25/likhanov/ /news/2021/12/25/spirit/ /news/2021/12/25/lightsteam/ /news/2021/12/25/snakebite/
