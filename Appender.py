@@ -53,7 +53,8 @@ def handle(message):
         return
     table.commit()
     table.close()
-    BOT.send_message(message.chat.id, 'Список доступных источников:\n1. Риа\n2. Рамблер\n3. Рбк\n4. BBC\n5. Газета')
+    BOT.send_message(message.chat.id, 'Список доступных источников:\n1. Риа\n2. Рамблер\n3. Рбк\n4. Вести' +
+                                      '\n5. Газета')
     answer = BOT.send_message(message.chat.id, 'Отправь предпочитаемые источники через запятую.\n' +
                               'Указывать только цифры. Пример: 1 3 5')
     BOT.register_next_step_handler(answer, saver2)
@@ -70,7 +71,7 @@ def saver2(message):
         elif name == '3':
             sources.append('rbc')
         elif name == '4':
-            sources.append('bbc')
+            sources.append('vesti')
         elif name == '5':
             sources.append('gazeta')
         else:

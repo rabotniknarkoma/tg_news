@@ -3,8 +3,14 @@ from bs4 import BeautifulSoup
 import requests
 import time
 import sqlite3
+import logging
 
 
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG
+)
+
+logger = logging.getLogger(__name__)
 DICT_OF_LAST = {}
 with open('last_news.txt', 'r') as f:
     files = f.read().split('\n')
@@ -22,24 +28,26 @@ class SourceValues:
         self.ria = 'https://ria.ru/world/'
         self.rambler = 'https://news.rambler.ru/'
         self.rbc = 'https://www.rbc.ru/newspaper/'
-        self.bbc = 'https://www.bbc.com/russian'
+        self.vesti = 'https://www.vesti.ru/news'
         self.gazeta = 'https://www.gazeta.ru/news/'
         self.economics = 'https://lenta.ru/rubrics/economics/'
         self.internet = 'https://lenta.ru/rubrics/media/'
         self.sport = 'https://lenta.ru/rubrics/sport/'
         self.science = 'https://lenta.ru/rubrics/science/'
         self.culture = 'https://lenta.ru/rubrics/culture/'
+
         self.class_ria = 'list-item__title'
         self.class_rambler = '_6bF6i'
         self.class_rbc = 'newspaper-page__news'
-        self.class_bbc = 'bbc-1fxtbkn evnt13t0'
+        self.class_vesti = 'list__title'
         self.class_gazeta = 'b_ear-title'
 
     def get_ria(self):
         url = self.ria
         headers = {
-            'User_Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' +
-                          '(KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36'
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0",
+            "Accept-Encoding": "*",
+            "Connection": "keep-alive"
         }
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -58,8 +66,9 @@ class SourceValues:
     def get_rambler(self):
         url = self.rambler
         headers = {
-            'User_Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' +
-                          '(KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36'
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0",
+            "Accept-Encoding": "*",
+            "Connection": "keep-alive"
         }
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -79,8 +88,9 @@ class SourceValues:
     def get_rbc(self):
         url = self.rbc
         headers = {
-            'User_Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' +
-                          '(KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36'
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0",
+            "Accept-Encoding": "*",
+            "Connection": "keep-alive"
         }
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -96,31 +106,35 @@ class SourceValues:
                     DICT_OF_LAST['rbc'] = DICT_OF_LAST['rbc'][1:]
         return news
 
-    def get_bbc(self):
-        url = self.bbc
+    def get_vesti(self):
+        url = self.vesti
         headers = {
-            'User_Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' +
-                          '(KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36'
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0",
+            "Accept-Encoding": "*",
+            "Connection": "keep-alive"
         }
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
-        texts = soup.findAll('a', self.class_bbc)
+        texts = soup.findAll('h3', self.class_vesti)
         news = []
         for i in range(4, -1, -1):
-            if texts[i]['href'] not in DICT_OF_LAST['bbc']:
-                href = self.bbc.split('/russian')[0] + texts[i]['href']
-                txt = texts[i].text
+            elem_soup = BeautifulSoup(str(texts[i]), 'html.parser')
+            elem = elem_soup.find_all('a')[0]
+            if elem['href'] not in DICT_OF_LAST['vesti']:
+                href = self.vesti + elem['href']
+                txt = elem.text
                 news.append((txt, href))
-                DICT_OF_LAST['bbc'].append(texts[i]['href'])
-                while len(DICT_OF_LAST['bbc']) > 5:
-                    DICT_OF_LAST['bbc'] = DICT_OF_LAST['bbc'][1:]
+                DICT_OF_LAST['vesti'].append(elem['href'])
+                while len(DICT_OF_LAST['vesti']) > 5:
+                    DICT_OF_LAST['vesti'] = DICT_OF_LAST['vesti'][1:]
         return news
 
     def get_gazeta(self):
         url = self.gazeta
         headers = {
-            'User_Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' +
-                          '(KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36'
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0",
+            "Accept-Encoding": "*",
+            "Connection": "keep-alive"
         }
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -140,8 +154,9 @@ class SourceValues:
     def get_economics(self):
         url = self.economics
         headers = {
-            'User_Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' +
-                          '(KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36'
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0",
+            "Accept-Encoding": "*",
+            "Connection": "keep-alive"
         }
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -160,8 +175,9 @@ class SourceValues:
     def get_internet(self):
         url = self.internet
         headers = {
-            'User_Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' +
-                          '(KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36'
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0",
+            "Accept-Encoding": "*",
+            "Connection": "keep-alive"
         }
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -180,8 +196,9 @@ class SourceValues:
     def get_sport(self):
         url = self.sport
         headers = {
-            'User_Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' +
-                          '(KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36'
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0",
+            "Accept-Encoding": "*",
+            "Connection": "keep-alive"
         }
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -200,8 +217,9 @@ class SourceValues:
     def get_science(self):
         url = self.science
         headers = {
-            'User_Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' +
-                          '(KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36'
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0",
+            "Accept-Encoding": "*",
+            "Connection": "keep-alive"
         }
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -220,8 +238,9 @@ class SourceValues:
     def get_culture(self):
         url = self.culture
         headers = {
-            'User_Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' +
-                          '(KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36'
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0",
+            "Accept-Encoding": "*",
+            "Connection": "keep-alive"
         }
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -260,7 +279,7 @@ while True:
     news_ria = worker.get_ria()
     news_rambler = worker.get_rambler()
     news_rbc = worker.get_rbc()
-    news_bbc = worker.get_bbc()
+    news_vesti = worker.get_vesti()
     news_gazeta = worker.get_gazeta()
     news_economics = worker.get_economics()
     news_internet = worker.get_internet()
@@ -285,8 +304,8 @@ while True:
                 for new in news_rbc:
                     text, link = new
                     BOT.send_message(name, '<a href="{}">{}</a>'.format(link, text), parse_mode='html')
-            elif site == 'bbc':
-                for new in news_bbc:
+            elif site == 'vesti':
+                for new in news_vesti:
                     text, link = new
                     BOT.send_message(name, '<a href="{}">{}</a>'.format(link, text), parse_mode='html')
             elif site == 'gazeta':
@@ -299,23 +318,26 @@ while True:
             if category == 'economics':
                 for new in news_economics:
                     text, link = new
-                    BOT.send_message(name, '{}\n<a href="{}">{}</a>'.format('Экономика', link, text), parse_mode='html')
+                    BOT.send_message(name, '{}\n<a href="{}">{}</a>'.format('Экономика', link, text[:-5]),
+                                     parse_mode='html')
             elif category == 'internet':
                 for new in news_internet:
                     text, link = new
-                    BOT.send_message(name, '{}\n<a href="{}">{}</a>'.format('Интернет и СМИ', link, text),
+                    BOT.send_message(name, '{}\n<a href="{}">{}</a>'.format('Интернет и СМИ', link, text[:-5]),
                                      parse_mode='html')
             elif category == 'sport':
                 for new in news_sport:
                     text, link = new
-                    BOT.send_message(name, '{}\n<a href="{}">{}</a>'.format('Спорт', link, text), parse_mode='html')
+                    BOT.send_message(name, '{}\n<a href="{}">{}</a>'.format('Спорт', link, text[:-5]),
+                                     parse_mode='html')
             elif category == 'science':
                 for new in news_science:
                     text, link = new
-                    BOT.send_message(name, '{}\n<a href="{}">{}</a>'.format('Наука', link, text), parse_mode='html')
+                    BOT.send_message(name, '{}\n<a href="{}">{}</a>'.format('Наука', link, text[:-5]),
+                                     parse_mode='html')
             elif category == 'culture':
                 for new in news_culture:
                     text, link = new
-                    BOT.send_message(name, '{}\n<a href="{}">{}</a>'.format('Культура', link, text), parse_mode='html')
-                BOT.send_message(name, 'Здесь могла быть ваша реклама!')
+                    BOT.send_message(name, '{}\n<a href="{}">{}</a>'.format('Культура', link, text[:-5]),
+                                     parse_mode='html')
     time.sleep(1800)
