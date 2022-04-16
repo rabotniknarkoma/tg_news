@@ -55,7 +55,7 @@ def handle(message):
     table.close()
     BOT.send_message(message.chat.id, 'Список доступных источников:\n1. Риа\n2. Рамблер\n3. Рбк\n4. Вести' +
                                       '\n5. Газета')
-    answer = BOT.send_message(message.chat.id, 'Отправь предпочитаемые источники через запятую.\n' +
+    answer = BOT.send_message(message.chat.id, 'Отправь предпочитаемые источники через пробел.\n' +
                               'Указывать только цифры. Пример: 1 3 5')
     BOT.register_next_step_handler(answer, saver2)
 
@@ -106,7 +106,7 @@ def handle(message):
     table.close()
     BOT.send_message(message.chat.id, 'Список доступных категорий:\n1. Экономика\n' +
                      '2. Интернет и СМИ\n3. Спорт\n4. Наука\n5. Культура')
-    answer = BOT.send_message(message.chat.id, 'Отправь предпочитаемые категории через запятую.\n' +
+    answer = BOT.send_message(message.chat.id, 'Отправь предпочитаемые категории через пробел.\n' +
                               'Указывать только цифры. Пример: 1 3 5')
     BOT.register_next_step_handler(answer, saver3)
 
