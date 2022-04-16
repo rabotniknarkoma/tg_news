@@ -1,7 +1,7 @@
 import telebot
 from bs4 import BeautifulSoup
 import requests
-import time
+import schedule
 import sqlite3
 import logging
 
@@ -260,7 +260,7 @@ class SourceValues:
 worker = SourceValues()
 
 
-while True:
+def sender():
     table = sqlite3.connect('Users_db.sqlite')
     cur = table.cursor()
     users_and_sources = cur.execute(f"""SELECT chat_id, choice FROM Sources WHERE mode='resources'""").fetchall()
@@ -340,4 +340,11 @@ while True:
                     text, link = new
                     BOT.send_message(name, '{}\n<a href="{}">{}</a>'.format('Культура', link, text[:-5]),
                                      parse_mode='html')
-    time.sleep(1800)
+
+
+sender()
+schedule.every(30).minutes.do(sender)
+
+while True:
+    schedule.run_pending()
+
