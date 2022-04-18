@@ -1,10 +1,10 @@
-ria https://ria.ru/20220416/ukraina-1783878822.html https://radiosputnik.ria.ru/20220416/donetsk-1783879604.html https://ria.ru/20220416/ramadan-1783879293.html https://ria.ru/20220416/medvedchuk-1783880561.html https://ria.ru/20220416/obstrel-1783880692.html
-rambler https://news.rambler.ru/world/48495966-flag-ukrainy-sprovotsiroval-skandal-v-amerikanskom-restorane/ https://news.rambler.ru/world/48495721-zelenskiy-imeet-pravo-byt-neblagodarnym-nediplomatichnym-i-naglym/ https://news.rambler.ru/starlife/48494522-tyazhelo-bolnoy-andrey-gubin-rasskazal-o-svoem-sostoyanii/ https://news.rambler.ru/community/48484283-raskryty-podrobnosti-dela-protiv-uvolivshego-raykina-rektora/ https://news.rambler.ru/politics/48495545-rossiya-izbezhala-liviyskogo-stsenariya-v-sovete-oon-po-pravam-cheloveka/
-rbc https://www.rbc.ru/newspaper/2022/04/15/6257a9399a79478115c54564 https://www.rbc.ru/newspaper/2022/04/15/625817319a7947b33c9a6bfd https://www.rbc.ru/newspaper/2022/04/15/625814519a7947b27f7679c2 https://www.rbc.ru/newspaper/2022/04/15/6256a3859a79472db87aecce https://www.rbc.ru/newspaper/2022/04/15/6257d6149a7947907c8176dd
-vesti /article/2705028 /article/2704841 /article/2705033 /article/2704981 /article/2704842
-gazeta /politics/news/2022/04/16/17579450.shtml /sport/news/2022/04/16/17579246.shtml /politics/news/2022/04/16/17579468.shtml /sport/news/2022/04/16/17579240.shtml /culture/news/2022/04/16/n_17579480.shtml
-economics /news/2022/04/16/dolgggi/ /news/2022/04/16/gazprom_ua/ /news/2022/04/16/rosppp/ /news/2022/04/16/gaz/ /news/2022/04/16/sovetchiki/
-internet /news/2022/04/15/fines/ /news/2022/04/15/vkkk/ /news/2022/04/15/wazap/ /news/2022/04/15/twi/ /news/2022/04/16/fil/
-sport /news/2022/04/16/ukraniansbirnaya/ /news/2022/04/16/santos/ /news/2022/04/16/kontraktanebudet/ /news/2022/04/16/tymenyaneuvazhaesh/ /news/2022/04/16/tarasova/
-science /news/2022/04/16/rumarket/ /news/2022/04/16/1000/ /news/2022/04/16/angosat2/ /news/2022/04/16/tochkau/ /news/2022/04/16/rogozin/
-culture /news/2022/04/15/poluan/ /news/2022/04/16/raikinn/ /news/2022/04/16/sheridan/ /news/2022/04/16/vschsi/ /news/2022/04/16/den_narozhdennya/
+ria
+rambler
+rbc
+vesti
+gazeta
+economics
+internet
+sport
+science
+culture
