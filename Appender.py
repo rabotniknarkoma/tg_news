@@ -1,9 +1,53 @@
 import telebot
 import sqlite3
+from pyowm import OWM
 
 
 BOT = telebot.TeleBot(token='1958663412:AAF8xTmHRb1u3too4BX3Sg4FqnxRXuKJCuI')
 USER = ''
+
+
+def get_location(lat, lon):
+    url = f'https://yandex.ru/pogoda/maps/nowcast?lat={lat}&lon={lon}&via=hnav&le_Lightnin=1'
+    return url
+
+
+def weather(city):
+    owm = OWM('19e51096e0594fd9b2649ee37b68c4bc')
+    mgr = owm.weather_manager()
+    obs = mgr.weather_at_place(city)
+    w = obs.weather
+    location = get_location(obs.location.lat,obs.location.lon)
+    temperature = w.temperature('celsius')
+    return temperature, location
+
+
+@BOT.message_handler(commands=['weather'])
+def handle(message):
+    BOT.send_message(message.chat.id, 'Введите название города')
+    BOT.register_next_step_handler(message, get_weather)
+
+
+def get_weather(message):
+    city = message.text
+    try:
+        w = weather(city)
+        temp = round(w[0]["feels_like"])
+        BOT.send_message(message.chat.id, f'В городе "{city}" сейчас {round(w[0]["temp"])}°С,'
+                                          f' чувствуется как {round(w[0]["feels_like"])}°С')
+        BOT.send_message(message.chat.id, w[1])
+        if temp < -20:
+            BOT.send_message(message.chat.id, 'Доставайте валенки!')
+        elif -20 < temp < 0:
+            BOT.send_message(message.chat.id, 'Лучше надеть подштанники!')
+        elif 0 < temp < 10:
+            BOT.send_message(message.chat.id, 'Можно ходить в пальто!')
+        elif 10 < temp < 20:
+            BOT.send_message(message.chat.id, 'Лёгкой курточки хватит!')
+        else:
+            BOT.send_message(message.chat.id, 'На улице тепло!')
+    except Exception:
+        BOT.send_message(message.chat.id, 'Упс... Похоже такого города нет в базе')
 
 
 @BOT.message_handler(commands=['change_mode'])

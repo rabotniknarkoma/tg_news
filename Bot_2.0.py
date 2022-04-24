@@ -4,6 +4,7 @@ import requests
 import schedule
 import sqlite3
 import logging
+from datetime import datetime
 
 
 logging.basicConfig(
@@ -342,8 +343,8 @@ def sender():
                                      parse_mode='html')
 
 
-sender()
-schedule.every(30).minutes.do(sender)
+schedule.every().hour.at(":30").do(sender)
+schedule.every().hour.at(":00").do(sender)
 
 while True:
     schedule.run_pending()

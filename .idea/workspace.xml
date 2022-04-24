@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d1337fc8-9b4c-4ad8-bc7c-052d9f216cee" name="Changes" comment="Minor bugs have been fixed. Updated requirements.txt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Appender.py" beforeDir="false" afterPath="$PROJECT_DIR$/Appender.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot_2.0.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot_2.0.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Users_db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/Users_db.sqlite" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/last_news.txt" beforeDir="false" afterPath="$PROJECT_DIR$/last_news.txt" afterDir="false" />
     </list>
